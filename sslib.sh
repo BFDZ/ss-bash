@@ -54,6 +54,7 @@ del_ipt_chains () {
     iptables -D OUTPUT -j $SS_OUT_RULES
     iptables -X $SS_IN_RULES
     iptables -X $SS_OUT_RULES
+    iptables -D OUTPUT -m geoip --destination-country CN  -j REJECT
 }
 init_ipt_chains () {
     del_ipt_chains 2> /dev/null
@@ -61,6 +62,7 @@ init_ipt_chains () {
     iptables -N $SS_OUT_RULES
     iptables -A INPUT -j $SS_IN_RULES
     iptables -A OUTPUT -j $SS_OUT_RULES
+    iptables -A OUTPUT -m geoip --destination-country CN  -j REJECT
 }
 
 add_rules () {
