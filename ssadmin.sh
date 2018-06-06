@@ -128,7 +128,7 @@ start_ss () {
     run_ssserver 
     sleep 1
     if check_ssserver; then 
-        echo -17 > /proc/$SSSERVER_PID/oom_adj
+        echo -17 > /proc/$(cat $SSSERVER_PID)/oom_adj
         echo 'ssserver已启动'
     else
         echo 'ssserver启动失败'
